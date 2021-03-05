@@ -1,10 +1,5 @@
 FROM golang:alpine AS builder
 
-ENV PORT        3000
-ENV PASSWORD    ChangeThis
-ENV METHOD      AEAD_CHACHA20_POLY1305
-ENV PV          1.3.1
-ENV WSPATH="/ChangeThis"
 ENV GO111MODULE on
 
 
@@ -15,7 +10,14 @@ RUN apk update && apk add --no-cache git curl && \
     
 
 
-FROM alpine
+FROM alpine:edge
+
+ENV PORT        3000
+ENV PASSWORD    ChangeThis
+ENV METHOD      AEAD_CHACHA20_POLY1305
+ENV PV          1.3.1
+ENV WSPATH="/ChangeThis"
+
 COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin
 
 CMD /usr/bin/go-shadowsocks2 -s 'ss://${METHOD}:${PASSWORD}@:3000' \
