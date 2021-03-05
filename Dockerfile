@@ -17,5 +17,4 @@ RUN apk update && apk add --no-cache git curl && \
 FROM alpine
 COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin
 
-CMD go-shadowsocks2 -s 'ss://${METHOD}:${PASSWORD}@:${PORT}' \
-       -plugin /usr/bin/xray-plugin_linux_amd64 -plugin-opts "server;path=${WSPATH}"
+CMD go-shadowsocks2 -s 'ss://${METHOD}:${PASSWORD}@:${PORT}' -plugin /usr/bin/xray-plugin_linux_amd64 -plugin-opts "server;path=${WSPATH}"
