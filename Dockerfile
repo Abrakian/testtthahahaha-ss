@@ -8,7 +8,7 @@ ENV WSPATH="/ChangeThis"
 
 RUN apk update && apk add --no-cache git curl 
 WORKDIR /go/src/ss
-RUN git clone --progress https://github.com/shadowsocks/go-shadowsocks2.git . && \
+RUN go get -u -v github.com/shadowsocks/go-shadowsocks2 . && \
     go mod download && \
     CGO_ENABLED=0 go build -o /tmp/ss -trimpath -ldflags "-s -w -buildid=" ./main && \
     curl -sL https://github.com/teddysun/xray-plugin/releases/download/v${PV}/xray-plugin-linux-amd64-v${PV}.tar.gz | tar zxC /usr/bin/ && \
