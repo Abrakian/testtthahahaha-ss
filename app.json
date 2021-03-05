@@ -1,0 +1,22 @@
+{
+    "name": "shadowsocks-libev",
+    "description": "shadowsocks-libev with v2ray-plugin on heroku",
+    "keywords": ["shadowsocks-libev"],
+    "env": {
+        "PASSWORD": {
+            "description": "shadowsocks-libev password",
+            "value": "ChangeThis"
+        },
+        "METHOD": {
+            "description": "shadowsocks-libev method",
+            "value": "aes-256-gcm"        
+        },
+        "WSPATH": {
+            "description": "websocket path",
+            "value": "/ChangeThis"        
+        }
+    },
+    "website": "https://github.com/mixool/shadowsocks-libev",
+    "repository": "https://github.com/mixool/shadowsocks-libev",
+    "stack": "container"
+}
