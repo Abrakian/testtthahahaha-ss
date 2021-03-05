@@ -11,7 +11,7 @@ RUN apk update && apk add --no-cache git curl && \
     chmod a+x /usr/bin/xray-plugin_linux_amd64
     
 
-WORKDIR /go/src/ss
+WORKDIR /go/src/ss/main
 
 RUN git clone --progress https://github.com/shadowsocks/go-shadowsocks2.git . && \
     go mod download && \
