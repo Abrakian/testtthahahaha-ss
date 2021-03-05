@@ -1,11 +1,12 @@
 FROM golang:alpine AS builder
 
-ENV GO111MODULE on
 ENV PORT        3000
 ENV PASSWORD    ChangeThis
 ENV METHOD      AEAD_CHACHA20_POLY1305
 ENV PV          1.3.1
 ENV WSPATH="/ChangeThis"
+ENV GO111MODULE on
+
 
 RUN apk update && apk add --no-cache git curl && \
     go get github.com/shadowsocks/go-shadowsocks2 && \
@@ -17,4 +18,5 @@ RUN apk update && apk add --no-cache git curl && \
 FROM alpine
 COPY --from=builder /go/bin/go-shadowsocks2 /usr/bin
 
-CMD go-shadowsocks2 -s 'ss://${METHOD}:${PASSWORD}@:${PORT}' -plugin /usr/bin/xray-plugin_linux_amd64 -plugin-opts "server;path=${WSPATH}"
+CMD go-shadowsocks2 -s 'ss://${METHOD}:${PASSWORD}@:${PORT}' \
+      -plugin /usr/bin/xray-plugin_linux_amd64 -plugin-opts "server;path=${WSPATH}"
