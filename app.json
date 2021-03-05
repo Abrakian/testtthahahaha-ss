@@ -9,7 +9,7 @@
         },
         "METHOD": {
             "description": "shadowsocks-libev method",
-            "value": "aes-256-gcm"        
+            "value": "AEAD_CHACHA20_POLY1305"        
         },
         "WSPATH": {
             "description": "websocket path",
